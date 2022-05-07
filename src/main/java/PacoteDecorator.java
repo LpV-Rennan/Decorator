@@ -1,7 +1,6 @@
 
 public abstract class PacoteDecorator implements Pacote{
     private Pacote pacote;
-    private String nomeDoPacote;
 
     public PacoteDecorator(Pacote pacote){
         this.pacote = pacote;
@@ -15,27 +14,19 @@ public abstract class PacoteDecorator implements Pacote{
         this.pacote = pacote;
     }
 
-    public String getNomeDoPacote() {
-        return nomeDoPacote;
-    }
-
-    public void setNomeDoPacote(String nomeDoPacote) {
-        this.nomeDoPacote = nomeDoPacote;
-    }
-
-    public abstract String obterNomeDoPacote();
-
+    public abstract float  obterPercentualDoPacote();
     @Override
     public float obterValordoPacote() {
-        return 0;
+        return this.pacote.obterValordoPacote() * (1 + (this.obterPercentualDoPacote()));
     }
-
 
     public abstract String obterNomePacote();
 
-    public String obterNomePacote(){
-        return this.pacote.
+    public String getNomeDoPacote(){
+        return this.pacote.getNomeDoPacote() + "/" + this.obterNomePacote();
     }
+
+
 
 
 
